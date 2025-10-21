@@ -1,0 +1,332 @@
+/* ===== Fondo general ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #0b1a33;
+  background-image: radial-gradient(circle at 20% 20%, #1a2a4f 0%, #0b1a33 80%);
+  color: #fff;
+}
+
+/* ===== Layout ===== */
+.dashboard {
+  display: flex;
+  height: 100vh;
+  background-color: #0b1a33;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: 250px;
+  background-color: #1d2b4f;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  border-right: 3px solid #f5c542;
+}
+
+.sidebar .logo img {
+  width: 150px;
+  margin: 10px auto 25px;
+  display: block;
+}
+
+.sidebar h3 {
+  margin: 0 0 15px;
+  font-size: 16px;
+  color: #f5c542;
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.25s;
+  border-radius: 8px;
+  color: #e0e0e0;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background-color: #f5c542;
+  color: #0b1a33;
+  font-weight: 600;
+  transform: translateX(4px);
+}
+
+.logout {
+  margin-top: auto;
+  color: #f5c542;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.logout:hover {
+  color: #ffd84d;
+}
+
+/* ===== Área principal ===== */
+.content-area {
+  flex: 1;
+  margin-left: 250px;
+  padding: 40px;
+  background-color: #0b1a33;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+/* === Estructura general de la calculadora === */
+.calc-container {
+  background: #fff;
+  border: 3px solid #f5c542;
+  border-radius: 20px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+  max-width: 750px;
+  width: 100%;
+  margin: 50px auto;
+  color: #222;
+}
+
+.calc-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* 🔹 todos los campos ocupan el mismo ancho */
+  gap: 12px;
+}
+
+/* === Campo de Patente / DNI === */
+.calc-form label {
+  font-weight: 600;
+  color: #0b2a53;
+}
+
+#patente {
+  align-self: flex-start; /* 🔹 lo mantiene alineado */
+  width: 40%;             /* 🔹 más corto, pero alineado visualmente */
+  min-width: 250px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+/* === Filas de multas === */
+.multas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.multa-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.multa-row select,
+.multa-row input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+/* === Botón eliminar (tacho) === */
+.multa-row .eliminar {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.multa-row .eliminar:hover {
+  background: #c0392b;
+}
+
+/* === Ajuste del espaciado entre botón Agregar y los botones inferiores === */
+.boton-agregar {
+  width: 100%;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  margin-bottom: 6px !important;  /* 🔹 antes había demasiado espacio */
+}
+
+#agregar-multa {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  background: #1b8517 !important;
+  color: #fff !important;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 5px 12px;
+  width: auto !important;
+  text-align: left !important;
+  gap: 4px;
+  margin: 0 !important;           /* 🔹 elimina márgenes extra */
+  transition: background 0.2s ease;
+}
+
+.botones-extra {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px !important;     /* 🔹 antes estaba más alto (~20-25px) */
+}
+
+
+/* === Botones inferiores === */
+.botones-extra {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.botones-extra button {
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: 0.2s;
+}
+
+#calcular {
+  background: #f5c542;
+  color: #000;
+}
+#calcular:hover {
+  background: #ffd84d;
+}
+
+#guardar {
+  background: #0b2a53;
+  color: #fff;
+}
+#guardar:hover {
+  background: #103a6b;
+}
+
+#descargar {
+  background: #f5c542;
+  color: #000;
+}
+#descargar:hover {
+  background: #ffd84d;
+}
+
+/* === Resultado === */
+.resultado {
+  margin-top: 25px;
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 20px;
+  border: 2px solid #f5c542;
+}
+/* ==== COTIZACIONES GUARDADAS ==== */
+.cotizaciones-container {
+  background: #fff;
+  border: 3px solid #f5c542;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+  max-width: 900px;
+  margin: 40px auto;
+  color: #222;
+}
+
+.cotizaciones-container h2 {
+  text-align: center;
+  color: #0b2a53;
+  margin-bottom: 20px;
+}
+
+.tabla-cotizaciones table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.tabla-cotizaciones th,
+.tabla-cotizaciones td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.tabla-cotizaciones th {
+  background: #f5c542;
+  color: #0b2a53;
+}
+
+.btn-ver,
+.btn-descargar {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  margin: 0 2px;
+}
+
+.btn-ver {
+  background: #0b2a53;
+  color: #fff;
+}
+
+.btn-ver:hover {
+  background: #103a6b;
+}
+
+.btn-descargar {
+  background: #f5c542;
+  color: #000;
+}
+
+.btn-descargar:hover {
+  background: #ffd84d;
+}
+

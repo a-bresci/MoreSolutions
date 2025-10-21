@@ -1,0 +1,70 @@
+<div class="cotizaciones-container">
+  <h2>📋 Cotizaciones Guardadas</h2>
+  <div id="lista-cotizaciones" class="tabla-cotizaciones">
+    <p>Cargando cotizaciones...</p>
+  </div>
+</div>
+
+<script>
+async function cargarCotizaciones() {
+  try {
+    const res = await fetch("../php/obtener_cotizaciones.php");
+    const data = await res.json();
+
+    const cont = document.getElementById("lista-cotizaciones");
+    if (!data.length) {
+      cont.innerHTML = "<p style='color:#ccc;'>No hay cotizaciones guardadas aún.</p>";
+      return;
+    }
+
+    let html = `
+      <table class="tabla-listado">
+        <thead>
+          <tr>
+            <th>Patente / DNI</th>
+            <th>Fecha</th>
+            <th>Total sin descuento</th>
+            <th>Total con descuento</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    data.forEach(c => {
+      html += `
+        <tr>
+          <td>${c.patente}</td>
+          <td>${c.fecha}</td>
+          <td>$${parseFloat(c.total_general).toLocaleString("es-AR",{minimumFractionDigits:2})}</td>
+          <td>$${parseFloat(c.total_descuento).toLocaleString("es-AR",{minimumFractionDigits:2})}</td>
+          <td>
+            <button class="btn-ver" onclick="verCotizacion('${c.ruta_html}')">👁️ Ver detalles</button>
+            <button class="btn-descargar" onclick="descargarCotizacion('${c.ruta_html}')">⬇️ Descargar</button>
+          </td>
+        </tr>
+      `;
+    });
+
+    html += "</tbody></table>";
+    cont.innerHTML = html;
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById("lista-cotizaciones").innerHTML = "<p>Error al cargar cotizaciones.</p>";
+  }
+}
+
+function verDetalle(ruta) {
+  window.open(ruta, "_blank");
+}
+
+function descargarCotizacion(ruta) {
+  const link = document.createElement("a");
+  link.href = ruta;
+  link.download = ruta.split("/").pop();
+  link.click();
+}
+
+cargarCotizaciones();
+</script>

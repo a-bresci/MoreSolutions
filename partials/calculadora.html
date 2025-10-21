@@ -1,0 +1,30 @@
+<div class="calc-container">
+  <h2>Calculadora de Infracciones</h2>
+
+  <form class="calc-form">
+    <!-- Campo de patente -->
+    <label for="patente">Patente / DNI</label>
+    <input type="text" id="patente" placeholder="Ej: AA970HY o 30123456" style="max-width: 250px;">
+
+    <!-- Contenedor de multas -->
+    <div class="multas-container">
+      <!-- Aquí se insertan dinámicamente las filas de multas -->
+    </div>
+
+    <!-- Botón para agregar -->
+    <div class="boton-agregar">
+  <button id="agregar-multa" type="button">➕ Agregar</button>
+</div>
+
+
+    <!-- Botones inferiores -->
+    <div class="botones-extra">
+      <button id="calcular" type="button" class="btn-secundario">🧮 Calcular Cotización</button>
+      <button id="guardar" type="button" class="btn-principal">💾 Guardar Cotización</button>
+      <button id="descargar" type="button" class="btn-secundario">📥 Descargar Imagen</button>
+    </div>
+  </form>
+
+  <!-- Resultado -->
+  <div id="resultado" class="resultado"></div>
+</div>
